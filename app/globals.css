@@ -124,3 +124,25 @@
     --foreground: 210 40% 98%;
   }
 }
+
+/* Hide scrollbar globally */
+html, body {
+  overflow-y: scroll;               /* keeps layout stable */
+  scrollbar-width: none;            /* Firefox */
+  -ms-overflow-style: none;         /* IE & Edge */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;                    /* Chrome, Safari, Opera */
+}
+
+/* Optional utility class */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

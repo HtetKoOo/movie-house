@@ -1,26 +1,31 @@
 "use client";
 import MovieSlider from "@/components/movie-slider";
-import { useEffect, useState } from "react";
+import NowPlayingMovie from "@/components/now-playing-movie";
+import PopularMovie from "@/components/popular-movie";
+import PopularTVSeries from "@/components/popular-tv-series";
+import UpcomingMovie from "@/components/upcoming-movie";
+import { useNowPlayingMovie, usePopularMovie, usePopularTVSeries, useTopRatedMovie, useUpcomingMovie } from "@/hooks/useMovie";
 
 export default function Home() {
-  const [movies, setMovies] = useState([]);
+  const { topRatedMovies, isLoading, isError } = useTopRatedMovie();
+  const { popularMovies, isLoading: popularLoading, isError: popularError } = usePopularMovie();
+  const { nowPlayingMovies, isLoading: nowPlayingLoading, isError: nowPlayingError } = useNowPlayingMovie();
+  const { upcomingMovies, isLoading: upcomingLoading, isError: upcomingError } = useUpcomingMovie();
+  const { popularTVSeries, isLoading: popularTVLoading, isError: popularTVError } = usePopularTVSeries();
 
-  useEffect(() => {
-    getRelatedMovies();
-  }, []);
+  console.log({popularTVSeries});
 
-  const getRelatedMovies = async () => {
-    const response = await fetch("https://api.themoviedb.org/3/movie/top_rated?api_key=ffb8e8a9d20e66f65c5d3ab0a30bf08d&language=en-US");
-    const data = await response.json();
-    console.log(data.results);
-    setMovies(data.results);
-  }
-
+  if (isLoading || popularLoading || nowPlayingLoading || upcomingLoading || popularTVLoading) return <div>Loading...</div>;
+  if (isError || popularError || nowPlayingError || upcomingError || popularTVError) return <div>Error loading movies</div>;
 
   return (
     <div className="flex w-full items-center justify-center">
-      <main className="flex w-full flex-col items-center justify-between">
-        <MovieSlider movies={movies} />
+      <main className="flex w-full m-0 p-0 flex-col items-center justify-between">
+        <MovieSlider topRatedMovies={topRatedMovies || []} />
+        <PopularMovie popularMovies={popularMovies || []} />
+        <PopularTVSeries popularTVSeries={popularTVSeries || []} />
+        <NowPlayingMovie nowPlayingMovies={nowPlayingMovies || []} />
+        <UpcomingMovie upcomingMovies={upcomingMovies || []} />
       </main>
     </div>
   );

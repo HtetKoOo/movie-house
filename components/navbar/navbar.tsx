@@ -12,7 +12,7 @@ import { UserMenu } from "../user-menu"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import { Menu, Search } from "lucide-react"
+import { Clapperboard, Menu, Search } from "lucide-react"
 
 export default function Navbar() {
     return (
@@ -28,11 +28,11 @@ export default function Navbar() {
                         </SheetTrigger>
                         <SheetContent side="left" className="w-64 p-4 rounded-r-2xl">
                             <nav className="grid gap-6 text-lg font-medium">
-                                <Link href="/docs" className="hover:text-foreground">
-                                    Docs
+                                <Link href="/" className="hover:text-foreground">
+                                    Movies
                                 </Link>
-                                <Link href="/blog" className="hover:text-foreground">
-                                    Blog
+                                <Link href="/tv-series" className="hover:text-foreground">
+                                    TV Series
                                 </Link>
                                 <Link href="/about" className="hover:text-foreground">
                                     About
@@ -43,16 +43,16 @@ export default function Navbar() {
                 </div>
 
                 {/* Left side for medium and larger screens — Logo */}
-                <Link href="/" className="hidden md:flex text-xl font-semibold tracking-tight px-10">
-                    MyApp
+                <Link href="/" className="hidden md:flex text-2xl font-semibold tracking-tight px-3 items-center">
+                    <Clapperboard className="mr-1"/><span> Movie House</span>
                 </Link>
 
                 {/* Center — Navigation links for medium and larger screens */}
                 <NavigationMenu className="hidden md:flex">
                     <NavigationMenuList className="flex space-x-3">
-                        <NavigationMenuItem className="w-20">
+                        <NavigationMenuItem className="w-30">
                             <NavigationMenuLink asChild>
-                                <Link href="/docs" className="bg-gray-200/40 font-semibold text-center">Docs</Link>
+                                <Link href="/tv-series" className="bg-gray-200/40 font-semibold text-center">TV Series</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="w-20">
@@ -71,7 +71,7 @@ export default function Navbar() {
                 {/* Center — Search for all screen sizes */}
                 <div className="flex-1 flex justify-center px-4">
                     <div className="relative w-full max-w-md">
-                        <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-5 w-5" />
                         <Input
                             type="search"
                             placeholder="Search..."
