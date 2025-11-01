@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
     <div className="flex w-full items-center justify-center">
-      <main className="flex w-full m-0 p-0 flex-col items-center justify-between">
+      <main className="flex w-full flex-col items-center justify-between">
         <MovieSlider topRatedMovies={topRatedMovies || []} />
         <PopularMovie popularMovies={popularMovies || []} />
         <PopularTVSeries popularTVSeries={popularTVSeries || []} />
