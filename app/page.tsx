@@ -13,7 +13,7 @@ export default function Home() {
   const { upcomingMovies, isLoading: upcomingLoading, isError: upcomingError } = useUpcomingMovie();
   const { popularTVSeries, isLoading: popularTVLoading, isError: popularTVError } = usePopularTVSeries();
 
-  console.log({popularTVSeries});
+  console.log({ popularMovies });
 
   if (isLoading || popularLoading || nowPlayingLoading || upcomingLoading || popularTVLoading) return <div>Loading...</div>;
   if (isError || popularError || nowPlayingError || upcomingError || popularTVError) return <div>Error loading movies</div>;
