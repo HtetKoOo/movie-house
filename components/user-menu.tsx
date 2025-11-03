@@ -28,7 +28,7 @@ export function UserMenu() {
                     />
                 </Avatar>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="start">
+            <DropdownMenuContent className="w-56 backdrop-blur-sm" align="start">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuGroup>
                     <DropdownMenuItem>

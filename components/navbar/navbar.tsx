@@ -16,7 +16,7 @@ import { Clapperboard, Menu, Search } from "lucide-react"
 
 export default function Navbar() {
     return (
-    <header className="flex fixed top-0 z-50 w-full bg-gray-200/20 border-b rounded-b-2xl">
+    <header className="flex fixed top-0 z-50 w-full bg-gray-200/20 border-b rounded-b-2xl backdrop-blur-sm">
             <div className="flex h-16 w-full items-center justify-between px-4 md:px-6">
                 {/* Left side for small screens — Dropdown Menu */}
                 <div className="md:hidden">
@@ -26,7 +26,7 @@ export default function Navbar() {
                                 <Menu className="h-6 w-6" />
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="left" className="w-64 p-4 rounded-r-2xl">
+                        <SheetContent side="left" className="w-64 p-4 rounded-r-2xl backdrop-blur-sm">
                             <nav className="grid gap-6 text-lg font-medium">
                                 <Link href="/" className="hover:text-foreground">
                                     Movies
