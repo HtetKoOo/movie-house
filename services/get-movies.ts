@@ -15,6 +15,7 @@ interface Movie {
   origin_country?: string[]; // optional
   production_companies: { id: number; name: string }[];
   original_language: string;
+  runtime: number;
 }
 
 export const getMovieDetails = async (id: string) => {
