@@ -1,4 +1,5 @@
 import MovieCard from "./movie-card"
+import Link from "next/link"
 export default function PopularTVSeries({ popularTVSeries }: { popularTVSeries: any[] }) {
     return (
         <section className="w-full mt-8">
@@ -7,7 +8,9 @@ export default function PopularTVSeries({ popularTVSeries }: { popularTVSeries: 
                 className="flex mx-2 md:mx-6 space-x-3 overflow-x-auto rounded-2xl scrollbar-hide"
             >
                 {popularTVSeries.map((tvSeries) => (
-                    <MovieCard key={tvSeries.id} movie={tvSeries} />
+                    <Link key={tvSeries.id} href={`/movie/${tvSeries.id}`}>
+                        <MovieCard key={tvSeries.id} movie={tvSeries} />
+                    </Link>
                 ))}
             </div>
         </section>

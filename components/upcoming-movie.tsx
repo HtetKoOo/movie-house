@@ -1,4 +1,5 @@
 import MovieCard from "./movie-card";
+import Link from "next/link";
 
 export default function UpcomingMovie({ upcomingMovies }: { upcomingMovies: any[] }) {
     return (
@@ -8,7 +9,9 @@ export default function UpcomingMovie({ upcomingMovies }: { upcomingMovies: any[
                 className="flex mx-2 md:mx-6 space-x-3 overflow-x-auto rounded-2xl scrollbar-hide"
             >
                 {upcomingMovies.map((movie) => (
-                    <MovieCard key={movie.id} movie={movie} />
+                    <Link key={movie.id} href={`/movie/${movie.id}`}>
+                        <MovieCard key={movie.id} movie={movie} />
+                    </Link>
                 ))}
             </div>
         </section>

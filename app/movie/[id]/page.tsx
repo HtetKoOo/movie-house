@@ -37,11 +37,19 @@ export default async function MovieDetailPage({
                 <div className="relative z-10 flex flex-col justify-between p-2">
                     <div className=" flex flex-col sm:flex-row justify-between p-2">
                         {/* LEFT */}
-                        <img
-                            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                            alt={movie.title}
-                            className="w-full sm:w-35 lg:w-55 h-[70vh] sm:h-full mb-4 object-cover rounded-2xl shadow-lg"
-                        />
+                        <div className="relative z-10 w-full sm:w-35 lg:w-55 aspect-2/3 mb-4">
+                            <Image
+                                src={
+                                    movie.poster_path
+                                        ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                                        : "/no-image.png"
+                                }
+                                alt={movie.title}
+                                fill
+                                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 700px"
+                                className="object-cover rounded-2xl shadow-lg"
+                            />
+                        </div>
 
                         {/* CENTER */}
                         <div className="flex flex-col flex-1 sm:mx-6 justify-between">
@@ -150,7 +158,7 @@ export default async function MovieDetailPage({
                                                 alt={review.author}
                                                 width={40}
                                                 height={40}
-                                                className="rounded-full"
+                                                className="rounded-full object-cover"
                                             />
                                         ) : (
                                             <div className="w-10 h-10 bg-gray-500 rounded-full flex items-center justify-center text-white text-sm">
@@ -188,10 +196,9 @@ export default async function MovieDetailPage({
                     )}
                 </section>
 
-                {/* Similar */}
-                {/* --- SIMILAR MOVIES SECTION --- */}
+                {/* --- SIMILAR SECTION --- */}
                 <section className="w-full md:w-1/3 px-2 sm:px-4">
-                    <h2 className="text-3xl font-bold mb-6">Similar Movies</h2>
+                    <h2 className="text-3xl font-bold mb-6">Similar</h2>
 
                     {similarMovies.results.length > 0 ? (
                         <div className="grid grid-cols-2 gap-2">
@@ -201,7 +208,7 @@ export default async function MovieDetailPage({
                                     href={`/movie/${sim.id}`}
                                     className="rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:scale-102 transition-transform duration-200"
                                 >
-                                    <div className="relative w-full aspect-2/3">
+                                    <div className="relative w-full aspect-3/4 overflow-hidden">
                                         <Image
                                             src={
                                                 sim.poster_path
@@ -210,6 +217,7 @@ export default async function MovieDetailPage({
                                             }
                                             alt={sim.title}
                                             fill
+                                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
                                             className="object-cover rounded-t-2xl"
                                         />
                                     </div>
