@@ -5,7 +5,8 @@ interface Genre {
   name: string;
 }
 
-interface Movie {
+export interface Movie {
+  id: number;
   title: string;
   overview: string;
   release_date: string;
