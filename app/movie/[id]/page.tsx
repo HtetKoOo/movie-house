@@ -112,13 +112,13 @@ export default async function MovieDetailPage({
                         </div>
 
                         {/* RIGHT */}
-                        <div className="flex flex-col w-full sm:w-1/4 md:w-1/6 lg:w-1/8">
+                        <div className="flex flex-col w-full sm:w-1/4 md:w-1/6">
                             <h2 className="text-2xl font-bold mb-4">Production Companies</h2>
                             <div className="flex flex-wrap gap-2">
                                 {movie.production_companies.map((company) => (
                                     <Badge
                                         key={company.id}
-                                        className="bg-white/20 text-white text-sm"
+                                        className="bg-white/20 text-white text-sm wrap-break-word whitespace-normal max-w-full"
                                     >
                                         {company.name}
                                     </Badge>

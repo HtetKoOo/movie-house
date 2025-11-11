@@ -13,8 +13,20 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Clapperboard, Menu, Search } from "lucide-react"
+import { useState } from "react"
+import { useRouter } from "next/navigation"
 
 export default function Navbar() {
+    
+    const [query, setQuery] = useState("");
+    const router = useRouter();
+
+    const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!query.trim()) return;
+        router.push(`/search?query=${encodeURIComponent(query.trim())}`);
+    };
+
     return (
     <header className="flex fixed top-0 z-50 w-full bg-gray-200/20 border-b rounded-b-2xl backdrop-blur-sm">
             <div className="flex h-16 w-full items-center justify-between px-4 md:px-6">
@@ -69,17 +81,24 @@ export default function Navbar() {
                 </NavigationMenu>
 
                 {/* Center — Search for all screen sizes */}
-                <div className="flex-1 flex justify-center px-4">
+                <form onSubmit={handleSearch} className="flex-1 flex justify-center px-4">
                     <div className="relative w-full max-w-md">
-                        <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-5 w-5" />
                         <Input
                             type="search"
                             placeholder="Search..."
-                            className="w-full pl-8 placeholder:text-white"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            className="w-full pl-8 pr-10 placeholder:text-white"
                         />
+                        <Button
+                            type="submit"
+                            size="icon"
+                            className="absolute right-1 top-1/2 -translate-y-1/2 bg-transparent hover:bg-gray-300/20"
+                        >
+                            <Search className="h-5 w-5" />
+                        </Button>
                     </div>
-                </div>
-
+                </form>
 
                 {/* Right side — Theme Toggle and User Menu */}
                 <div className="flex items-center space-x-4">
