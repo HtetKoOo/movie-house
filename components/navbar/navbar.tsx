@@ -43,7 +43,7 @@ export default function Navbar() {
                                 <Link href="/" className="hover:text-foreground">
                                     Movies
                                 </Link>
-                                <Link href="/tv-series" className="hover:text-foreground">
+                                <Link href="/tv/top-rated" className="hover:text-foreground">
                                     TV Series
                                 </Link>
                                 <Link href="/about" className="hover:text-foreground">
@@ -64,7 +64,7 @@ export default function Navbar() {
                     <NavigationMenuList className="flex space-x-3">
                         <NavigationMenuItem className="w-30">
                             <NavigationMenuLink asChild>
-                                <Link href="/tv-series" className="bg-gray-200/40 font-semibold text-center">TV Series</Link>
+                                <Link href="/tv" className="bg-gray-200/40 font-semibold text-center">TV Series</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="w-20">
@@ -88,14 +88,14 @@ export default function Navbar() {
                             placeholder="Search..."
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                            className="w-full pl-8 pr-10 placeholder:text-white"
+                            className="w-full pl-8 pr-10 placeholder:text-black"
                         />
                         <Button
                             type="submit"
                             size="icon"
                             className="absolute right-1 top-1/2 -translate-y-1/2 bg-transparent hover:bg-gray-300/20"
                         >
-                            <Search className="h-5 w-5" />
+                            <Search className="h-5 w-5 text-black" />
                         </Button>
                     </div>
                 </form>

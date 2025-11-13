@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 export const useTopRatedMovie = () => {
     const {
       data: topRatedMovies,
@@ -14,7 +14,7 @@ export const useTopRatedMovie = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        console.log(data);
+        //console.log(data);
         return data.results;
       },
       staleTime: 1000 * 60 * 5, // 5 minutes
@@ -38,7 +38,7 @@ export const usePopularMovie = () => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      console.log(data);
+      //console.log(data);
       return data.results;
     },
     staleTime: 1000 * 60 * 5, // 5 minutes
@@ -62,7 +62,7 @@ export const useNowPlayingMovie = () => {
                 throw new Error("Network response was not ok");
             }
             const data = await response.json();
-            console.log(data);
+            console.log("nowPlayingMovies///", data);
             return data.results;
         },
         staleTime: 1000 * 60 * 5, // 5 minutes
@@ -86,7 +86,7 @@ export const useUpcomingMovie = () => {
                 throw new Error("Network response was not ok");
             }
             const data = await response.json();
-            console.log(data);
+            //console.log(data);
             return data.results;
         },
         staleTime: 1000 * 60 * 5, // 5 minutes
@@ -110,7 +110,7 @@ export const usePopularTVSeries = () => {
                 throw new Error("Network response was not ok");
             }
             const data = await response.json();
-            console.log(data);
+            //console.log(data);
             return data.results;
         },
         staleTime: 1000 * 60 * 5, // 5 minutes
