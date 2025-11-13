@@ -1,10 +1,8 @@
 import { SearchResponse } from "@/types/search";
 
 export async function getSearchMovies(query: string): Promise<SearchResponse> {
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-  const baseUrl = process.env.NEXT_PUBLIC_MOVIE_SEARCH_API_URL;
 
-  const url = `${baseUrl}?api_key=${apiKey}&query=${encodeURIComponent(query)}&language=en-US&page=1`;
+  const url = `${process.env.NEXT_PUBLIC_MOVIE_SEARCH_API_URL}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${encodeURIComponent(query)}&language=en-US&page=1`;
 
   const res = await fetch(url, {
     next: { revalidate: 60 },
