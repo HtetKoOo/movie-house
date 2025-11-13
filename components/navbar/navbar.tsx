@@ -43,7 +43,7 @@ export default function Navbar() {
                                 <Link href="/" className="hover:text-foreground">
                                     Movies
                                 </Link>
-                                <Link href="/tv/top-rated" className="hover:text-foreground">
+                                <Link href="/tv" className="hover:text-foreground">
                                     TV Series
                                 </Link>
                                 <Link href="/about" className="hover:text-foreground">
