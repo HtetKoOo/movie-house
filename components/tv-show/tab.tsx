@@ -24,12 +24,12 @@ export function TvShowTabs({ defaultValue, tabs }: TvShowTabsProps) {
     return (
         <div className="flex w-full flex-col gap-6">
             <Tabs defaultValue={defaultValue ?? tabs[0]?.value}>
-                <TabsList className="flex flex-wrap sm:flex-nowrap w-full gap-2 overflow-x-auto bg-muted rounded-2xl">
+                <TabsList className="flex flex-wrap sm:flex-nowrap w-full overflow-x-auto bg-muted rounded-2xl">
                     {tabs.map((tab) => (
                         <TabsTrigger
                             key={tab.value}
                             value={tab.value}
-                            className="rounded-2xl px-4 py-2 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-white transition"
+                            className="rounded-2xl px-2 py-2 text-sm font-medium data-[state=active]:bg-primary data-[state=active]:text-white transition"
                         >
                             {tab.label}
                         </TabsTrigger>
