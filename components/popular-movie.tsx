@@ -1,8 +1,9 @@
 import { Flame } from "lucide-react";
 import MovieCard from "./movie-card";
 import Link from "next/link";
+import { Movie } from "@/services/get-movies";
 
-export default function PopularMovie({ popularMovies }: { popularMovies: any[] }) {
+export default function PopularMovie({ popularMovies }: { popularMovies: Movie[] }) {
     return (
         <section className="w-full mt-8">
             <h3 className="text-2xl font-semibold mb-4 mx-2 md:mx-6">

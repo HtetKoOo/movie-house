@@ -17,6 +17,7 @@ export interface Movie {
   production_companies: { id: number; name: string }[];
   original_language: string;
   runtime: number;
+  name: string; // optional for TV series
 }
 
 export const getMovieDetails = async (id: string) => {

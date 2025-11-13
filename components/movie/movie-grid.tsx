@@ -1,0 +1,44 @@
+"use client";
+
+import Image from "next/image";
+import { cn } from "@/lib/utils"; // optional, for className merging
+import { TvShow } from "@/services/get-top-rated-tv";
+
+interface TvShowGridProps {
+    title: string;
+    shows: TvShow[];
+    className?: string;
+}
+
+export function TvShowGrid({ title, shows, className }: TvShowGridProps) {
+    return (
+        <section className={cn("py-2 grid gap-6", className)}>
+            <h2 className="text-2xl font-semibold">{title}</h2>
+
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-4">
+                {shows.map((show) => (
+                    <div
+                        key={show.id}
+                        className="rounded-2xl overflow-hidden shadow-lg hover:scale-[1.03] transition-transform"
+                    >
+                        <div className="relative w-full aspect-2/3">
+                            <Image
+                                src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                                alt={show.name}
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
+
+                        <div className="p-3">
+                            <h3 className="font-semibold text-sm truncate">{show.name}</h3>
+                            <p className="text-xs text-muted-foreground">
+                                ⭐ {show.vote_average.toFixed(1)} | {show.first_air_date}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+}
