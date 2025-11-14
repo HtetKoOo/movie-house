@@ -10,7 +10,7 @@ import "swiper/css/pagination";
 
 import { Button } from "./ui/button";
 import { CirclePlay } from "lucide-react";
-import { Movie } from "@/services/get-movies";
+import { Movie } from "@/types/movie";
 
 export default function MovieSlider({ topRatedMovies }: { topRatedMovies: Movie[] }) {
     const hasEnoughSlides = topRatedMovies.length > 1; // loop needs at least 2
@@ -33,7 +33,7 @@ export default function MovieSlider({ topRatedMovies }: { topRatedMovies: Movie[
                         <div className="relative w-full h-[40vh] md:h-[55vh] lg:h-[70vh]">
                             <Image
                                 src={`https://image.tmdb.org/t/p/w1280${movie.poster_path}`}
-                                alt={movie.title || movie.name}
+                                alt={movie.title || movie.name || "Movie Poster"}
                                 fill
                                 priority={index === 0} // preload first image for better UX
                                 sizes="100vw"

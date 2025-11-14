@@ -1,7 +1,7 @@
 import { Flame } from "lucide-react";
 import MovieCard from "./movie-card";
 import Link from "next/link";
-import { Movie } from "@/services/get-movies";
+import { Movie } from "@/types/movie";
 
 export default function NowPlayingMovie({ nowPlayingMovies }: { nowPlayingMovies: Movie[] }) {
     return (
