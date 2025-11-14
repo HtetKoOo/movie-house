@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { Movie } from "@/services/get-movies";
+import { Movie } from "@/types/movie";
 
 interface SearchResultGridProps {
     title: string;

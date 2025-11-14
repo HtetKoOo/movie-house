@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { getMovieReviews } from "@/services/get-movie-reviews";
-import { getMovieDetails } from "@/services/get-movies";
+import { getMovieDetails } from "@/services/get-movie-details";
 import { getSimilarMovies } from "@/services/get-similar-movies";
 import { Star } from "lucide-react";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import Link from "next/link";
 export default async function MovieDetailPage({
     params,
 }: {
-        params: Promise<{ id: string }>;
+    params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
 
@@ -18,7 +18,7 @@ export default async function MovieDetailPage({
     const movieReview = await getMovieReviews(id);
     const similarMovies = await getSimilarMovies(id);
 
-    console.log("review",movieReview);
+    console.log("review", movieReview);
 
     return (
         <main className="min-h-screen">
@@ -56,7 +56,7 @@ export default async function MovieDetailPage({
                             <div>
                                 <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
                                 <div className="flex items-center mb-4 gap-2">
-                                    {movie.genres.map((genre) => (
+                                    {movie.genres?.map((genre) => (
                                         <Badge key={genre.id} className="bg-white/20 text-white">
                                             {genre.name}
                                         </Badge>
@@ -115,7 +115,7 @@ export default async function MovieDetailPage({
                         <div className="flex flex-col w-full sm:w-1/4 md:w-1/6">
                             <h2 className="text-2xl font-bold mb-4">Production Companies</h2>
                             <div className="flex flex-wrap gap-2">
-                                {movie.production_companies.map((company) => (
+                                {movie.production_companies?.map((company) => (
                                     <Badge
                                         key={company.id}
                                         className="bg-white/20 text-white text-sm wrap-break-word whitespace-normal max-w-full"

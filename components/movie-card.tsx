@@ -1,5 +1,5 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Movie } from "@/services/get-movies";
+import { Movie } from "@/types/movie";
 import Image from "next/image";
 
 export default function MovieCard({ movie }: { movie: Movie }) {
@@ -9,7 +9,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
                 <div className="relative w-full h-48">
                     <Image
                         src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-                        alt={movie.title || movie.name }
+                        alt={movie.title || movie.name || "Movie Poster"}
                         fill
                         sizes="(max-width: 768px) 128px, (max-width: 1024px) 152px, 160px"
                         className="object-cover rounded-t-2xl"

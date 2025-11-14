@@ -1,6 +1,6 @@
 import { getSearchMovies } from "@/services/get-search-movies";
 import { SearchResultGrid } from "@/components/search/search-result-grid";
-import { Movie } from "@/services/get-movies";
+import { Movie } from "@/types/movie";
 
 export default async function SearchPage({
     searchParams,

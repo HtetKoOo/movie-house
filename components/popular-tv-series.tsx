@@ -1,4 +1,4 @@
-import { Movie } from "@/services/get-movies"
+import { Movie } from "@/types/movie"
 import MovieCard from "./movie-card"
 import Link from "next/link"
 export default function PopularTVSeries({ popularTVSeries }: { popularTVSeries: Movie[] }) {

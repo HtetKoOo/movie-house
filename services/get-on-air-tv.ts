@@ -1,11 +1,4 @@
-import type { Movie } from "./get-movies";
-
-export interface TvShow extends Movie {
-  first_air_date: string;
-  name: string;
-  origin_country: string[];
-  original_name: string;
-}
+import { TvShow } from "@/types/tv-show";
 
 export async function getOnAirTvShows(page = 1): Promise<TvShow[]> {
   const res = await fetch(

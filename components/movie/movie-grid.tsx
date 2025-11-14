@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { cn } from "@/lib/utils"; // optional, for className merging
-import { TvShow } from "@/services/get-top-rated-tv";
+import { TvShow } from "@/types/tv-show";
 
 interface TvShowGridProps {
     title: string;
