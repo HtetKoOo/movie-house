@@ -14,5 +14,6 @@ export async function getSearchMovies(query: string): Promise<SearchResponse> {
   }
 
   const data: SearchResponse = await res.json();
+  console.log("Search API response:", data);
   return data;
 }

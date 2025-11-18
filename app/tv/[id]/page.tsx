@@ -1,24 +1,24 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { getMovieReviews } from "@/services/get-movie-reviews";
-import { getMovieDetails } from "@/services/get-movie-details";
-import { getSimilarMovies } from "@/services/get-similar-movies";
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { getTvShowDetails } from "@/services/get-tv-show-details";
+import { getTvShowReviews } from "@/services/get-tv-show-reviews";
+import { getSimilarTvShows } from "@/services/get-similar-tv-show";
 
-export default async function MovieDetailPage({
+export default async function TvShowDetailPage({
     params,
 }: {
     params: Promise<{ id: string }>;
 }) {
     const { id } = await params;
 
-    const movie = await getMovieDetails(id);
-    const movieReview = await getMovieReviews(id);
-    const similarMovies = await getSimilarMovies(id);
+    const tvShow = await getTvShowDetails(id);
+    const tvShowReview = await getTvShowReviews(id);
+    const similarTvShows = await getSimilarTvShows(id);
 
-    console.log("review", movieReview);
+    console.log("tvShow", tvShow);
 
     return (
         <main className="min-h-screen">
@@ -27,7 +27,7 @@ export default async function MovieDetailPage({
             <section
                 className="relative text-white w-full bg-cover bg-center pt-18 sm:pt-20 rounded-b-2xl overflow-hidden mb-8"
                 style={{
-                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${movie.poster_path})`,
+                    backgroundImage: `url(https://image.tmdb.org/t/p/original/${tvShow.poster_path})`,
                 }}
             >
                 {/* Overlay for readability */}
@@ -40,11 +40,11 @@ export default async function MovieDetailPage({
                         <div className="relative z-10 w-full sm:w-35 lg:w-55 aspect-2/3 mb-4">
                             <Image
                                 src={
-                                    movie.poster_path
-                                        ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
+                                    tvShow.poster_path
+                                        ? `https://image.tmdb.org/t/p/original${tvShow.poster_path}`
                                         : "/no-image.png"
                                 }
-                                alt={movie.title}
+                                alt={tvShow.title}
                                 fill
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 700px"
                                 className="object-cover rounded-2xl shadow-lg"
@@ -54,9 +54,9 @@ export default async function MovieDetailPage({
                         {/* CENTER */}
                         <div className="flex flex-col flex-1 sm:mx-6 justify-between">
                             <div>
-                                <h1 className="text-4xl font-bold mb-4">{movie.title}</h1>
+                                <h1 className="text-4xl font-bold mb-4">{tvShow.title}</h1>
                                 <div className="flex items-center mb-4 gap-2">
-                                    {movie.genres?.map((genre) => (
+                                    {tvShow.genres?.map((genre) => (
                                         <Badge key={genre.id} className="bg-white/20 text-white">
                                             {genre.name}
                                         </Badge>
@@ -65,20 +65,20 @@ export default async function MovieDetailPage({
                                 <div className="flex gap-2">
                                     <p className="flex items-center mb-2">
                                         <Star className="w-4 h-4 fill-yellow-400 " />
-                                        <strong>{movie.vote_average}/</strong>10
+                                        <strong>{tvShow.vote_average}/</strong>10
                                     </p>
                                     <span>|</span>
-                                    <p>{movie.origin_country}</p>
+                                    <p>{tvShow.origin_country}</p>
                                     <span>|</span>
-                                    <p>{movie.original_language}</p>
+                                    <p>{tvShow.original_language}</p>
                                     <span>|</span>
-                                    <p>{movie.runtime} min</p>
+                                    <p>{tvShow.runtime} min</p>
                                 </div>
                                 <p className="mb-2">
-                                    <strong>Release Date:</strong> {movie.release_date}
+                                    <strong>Release Date:</strong> {tvShow.release_date}
                                 </p>
                                 <div className="flex gap-3 lg:hidden mb-4">
-                                    <Link href={movie.homepage}>
+                                    <Link href={tvShow.homepage}>
                                         <Button className="cursor-pointer bg-green-400">
                                             Watch Now
                                         </Button>
@@ -90,14 +90,14 @@ export default async function MovieDetailPage({
                                     </Link>
                                 </div>
                                 <p className="mb-4 sm:hidden lg:block">
-                                    <strong>Overview -</strong> {movie.overview}
+                                    <strong>Overview -</strong> {tvShow.overview}
                                 </p>
                             </div>
 
                             {/* BUTTONS BASELINE */}
                             <div>
                                 <div className="space-x-3 hidden lg:block mb-4">
-                                    <Link href={movie.homepage}>
+                                    <Link href={tvShow.homepage}>
                                         <Button className="cursor-pointer bg-green-400">
                                             Watch Now
                                         </Button>
@@ -115,7 +115,7 @@ export default async function MovieDetailPage({
                         <div className="flex flex-col w-full sm:w-1/4 md:w-1/6">
                             <h2 className="text-2xl font-bold mb-4">Production Companies</h2>
                             <div className="flex flex-wrap gap-2">
-                                {movie.production_companies?.map((company) => (
+                                {tvShow.production_companies?.map((company) => (
                                     <Badge
                                         key={company.id}
                                         className="bg-white/20 text-white text-sm wrap-break-word whitespace-normal max-w-full"
@@ -129,7 +129,7 @@ export default async function MovieDetailPage({
 
                     {/* OVERVIEW BELOW (for smaller screens) */}
                     <p className="mb-4 hidden sm:block lg:hidden text-white">
-                        <strong>Overview -</strong> {movie.overview}
+                        <strong>Overview -</strong> {tvShow.overview}
                     </p>
                 </div>
             </section>
@@ -140,9 +140,9 @@ export default async function MovieDetailPage({
                 <section className="flex flex-col w-full md:w-2/3 px-2 sm:px-4 mb-16">
                     <h2 className="text-3xl font-bold mb-6">User Reviews</h2>
 
-                    {movieReview.results.length > 0 ? (
+                    {tvShowReview.results.length > 0 ? (
                         <div className="space-y-2">
-                            {movieReview.results.map((review) => (
+                            {tvShowReview.results.map((review) => (
                                 <div
                                     key={review.id}
                                     className="rounded-2xl p-4 border border-gray-200 shadow-md "
@@ -200,30 +200,30 @@ export default async function MovieDetailPage({
                 <section className="w-full md:w-1/3 px-2 sm:px-4">
                     <h2 className="text-3xl font-bold mb-6">Similar</h2>
 
-                    {similarMovies.results.length > 0 ? (
+                    {similarTvShows.results.length > 0 ? (
                         <div className="grid grid-cols-2 gap-2">
-                            {similarMovies.results.map((sim) => (
+                            {similarTvShows.results.map((similar) => (
                                 <Link
-                                    key={sim.id}
-                                    href={`/movie/${sim.id}`}
+                                    key={similar.id}
+                                    href={`/movie/${similar.id}`}
                                     className="rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:scale-102 transition-transform duration-200"
                                 >
                                     <div className="relative w-full aspect-3/4 overflow-hidden">
                                         <Image
                                             src={
-                                                sim.poster_path
-                                                    ? `https://image.tmdb.org/t/p/w500${sim.poster_path}`
+                                                similar.poster_path
+                                                    ? `https://image.tmdb.org/t/p/w500${similar.poster_path}`
                                                     : "/no-image.png"
                                             }
-                                            alt={sim.title}
+                                            alt={similar.title}
                                             fill
                                             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
                                             className="object-cover rounded-t-2xl"
                                         />
                                     </div>
                                     <div className="p-2 text-center">
-                                        <p className="text-sm font-medium line-clamp-2">{sim.title}</p>
-                                        <p className="text-xs">⭐ {sim.vote_average.toFixed(1)}</p>
+                                        <p className="text-sm font-medium line-clamp-2">{similar.title}</p>
+                                        <p className="text-xs">⭐ {similar.vote_average.toFixed(1)}</p>
                                     </div>
                                 </Link>
                             ))}

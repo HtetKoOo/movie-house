@@ -1,8 +1,12 @@
-import { Movie } from "./movie";
+import { MediaBase } from "./media";
 
-export interface TvShow extends Movie {
-  first_air_date: string;
+export interface TvShow extends MediaBase {
   name: string;
-  origin_country: string[];
   original_name: string;
+  first_air_date: string;
+  origin_country: string[];
+  number_of_episodes?: number;
+  number_of_seasons?: number;
+  last_air_date?: string;
+  media_type?: "tv";
 }

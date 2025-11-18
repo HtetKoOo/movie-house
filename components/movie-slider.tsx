@@ -11,6 +11,7 @@ import "swiper/css/pagination";
 import { Button } from "./ui/button";
 import { CirclePlay } from "lucide-react";
 import { Movie } from "@/types/movie";
+import Link from "next/link";
 
 export default function MovieSlider({ topRatedMovies }: { topRatedMovies: Movie[] }) {
     const hasEnoughSlides = topRatedMovies.length > 1; // loop needs at least 2
@@ -32,8 +33,8 @@ export default function MovieSlider({ topRatedMovies }: { topRatedMovies: Movie[
                         {/* Background image */}
                         <div className="relative w-full h-[40vh] md:h-[55vh] lg:h-[70vh]">
                             <Image
-                                src={`https://image.tmdb.org/t/p/w1280${movie.poster_path}`}
-                                alt={movie.title || movie.name || "Movie Poster"}
+                                src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                                alt={movie.title || "Movie Poster"}
                                 fill
                                 priority={index === 0} // preload first image for better UX
                                 sizes="100vw"
@@ -43,10 +44,12 @@ export default function MovieSlider({ topRatedMovies }: { topRatedMovies: Movie[
                             <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 left-5 lg:left-10 p-4 text-white w-2/3 md:w-1/2">
                                 <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">{movie.title}</h3>
                                 <p className="hidden lg:block w-full">{movie.overview}</p>
+                                <Link href="/">
                                 <Button className="mt-2 cursor-pointer">
                                     <CirclePlay className="mr-2" />
                                     Watch Now
-                                </Button>
+                                    </Button>
+                                </Link>
                             </div>
                         </div>
                     </SwiperSlide>

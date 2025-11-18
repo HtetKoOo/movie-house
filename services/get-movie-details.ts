@@ -11,6 +11,8 @@ export const getMovieDetails = async (id: string) => {
     throw new Error("Network response was not ok");
   }
 
-  const data = await response.json();
-  return data as Movie;
+  const data = await response.json() as Movie;
+  console.log("movie detail", data)
+  console.log("homepage",data.homepage)
+  return data;
 };

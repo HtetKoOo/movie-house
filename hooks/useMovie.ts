@@ -14,7 +14,7 @@ export const useTopRatedMovie = () => {
           throw new Error("Network response was not ok");
         }
         const data = await response.json();
-        //console.log(data);
+        console.log("top",data);
         return data.results;
       },
       staleTime: 1000 * 60 * 5, // 5 minutes

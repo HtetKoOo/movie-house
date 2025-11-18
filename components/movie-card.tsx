@@ -8,7 +8,7 @@ export default function MovieCard({ movie }: { movie: Movie }) {
             <CardContent className="p-0">
                 <div className="relative w-full h-48">
                     <Image
-                        src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
+                        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                         alt={movie.title || movie.name || "Movie Poster"}
                         fill
                         sizes="(max-width: 768px) 128px, (max-width: 1024px) 152px, 160px"
