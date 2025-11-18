@@ -42,7 +42,7 @@ export default async function MovieDetailPage({
                                 src={
                                     movie.poster_path
                                         ? `https://image.tmdb.org/t/p/original${movie.poster_path}`
-                                        : "/no-image.png"
+                                        : "/images/image-placeholder.png"
                                 }
                                 alt={movie.title}
                                 fill
@@ -83,10 +83,11 @@ export default async function MovieDetailPage({
                                             Watch Now
                                         </Button>
                                     </Link>
-                                    <Link href="/">
-                                        <Button className="cursor-pointer bg-blue-400">
-                                            Add to List
-                                        </Button>
+                                    <Link href="" >
+                                        <Button className="cursor-pointer bg-blue-400">Play Trailer</Button>
+                                    </Link>
+                                    <Link href="" >
+                                        <Button className="cursor-pointer bg-cyan-400">Add to List</Button>
                                     </Link>
                                 </div>
                                 <p className="mb-4 sm:hidden lg:block">
@@ -102,10 +103,11 @@ export default async function MovieDetailPage({
                                             Watch Now
                                         </Button>
                                     </Link>
-                                    <Link href="/">
-                                        <Button className="cursor-pointer bg-blue-400">
-                                            Add to List
-                                        </Button>
+                                    <Link href="" >
+                                        <Button className="cursor-pointer bg-blue-400">Play Trailer</Button>
+                                    </Link>
+                                    <Link href="" >
+                                        <Button className="cursor-pointer bg-cyan-400">Add to List</Button>
                                     </Link>
                                 </div>
                             </div>

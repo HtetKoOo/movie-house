@@ -46,6 +46,9 @@ export default function Navbar() {
                                 <Link href="/tv" className="hover:text-foreground">
                                     TV Series
                                 </Link>
+                                <Link href="/people" className="hover:text-foreground">
+                                    People
+                                </Link>
                                 <Link href="/about" className="hover:text-foreground">
                                     About
                                 </Link>
@@ -69,7 +72,7 @@ export default function Navbar() {
                         </NavigationMenuItem>
                         <NavigationMenuItem className="w-20">
                             <NavigationMenuLink asChild>
-                                <Link href="/blog" className="bg-gray-200/40 font-semibold text-center">Blog</Link>
+                                <Link href="/people" className="bg-gray-200/40 font-semibold text-center">People</Link>
                             </NavigationMenuLink>
                         </NavigationMenuItem>
                         <NavigationMenuItem className="w-20">

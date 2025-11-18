@@ -42,7 +42,7 @@ export default async function TvShowDetailPage({
                                 src={
                                     tvShow.poster_path
                                         ? `https://image.tmdb.org/t/p/original${tvShow.poster_path}`
-                                        : "/no-image.png"
+                                        : "/images/image-placeholder.png"
                                 }
                                 alt={tvShow.title}
                                 fill
@@ -213,7 +213,7 @@ export default async function TvShowDetailPage({
                                             src={
                                                 similar.poster_path
                                                     ? `https://image.tmdb.org/t/p/w500${similar.poster_path}`
-                                                    : "/no-image.png"
+                                                    : "/images/image-placeholder.png"
                                             }
                                             alt={similar.title}
                                             fill

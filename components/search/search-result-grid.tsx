@@ -31,7 +31,7 @@ export function SearchResultGrid({ title, results, className }: SearchResultGrid
                                 src={
                                     result.poster_path
                                         ? `https://image.tmdb.org/t/p/w500${result.poster_path}`
-                                        : "/images/placeholder.png"
+                                        : "/images/image-placeholder.png"
                                 }
                                 alt={result.title || "Movie poster"}
                                 fill

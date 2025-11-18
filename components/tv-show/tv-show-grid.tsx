@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { cn } from "@/lib/utils"; // optional, for className merging
 import { TvShow } from "@/types/tv-show";
@@ -25,7 +23,11 @@ export function TvShowGrid({ title, shows, className }: TvShowGridProps) {
                     >
                         <div className="relative w-full aspect-2/3">
                             <Image
-                                src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                                src={
+                                    show.poster_path
+                                        ? `https://image.tmdb.org/t/p/original${show.poster_path}`
+                                        : "/images/image-placeholder.png"
+                                }
                                 alt={show.name}
                                 fill
                                 className="object-cover"

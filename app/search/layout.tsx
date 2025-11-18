@@ -2,7 +2,7 @@ export default function SearchResultLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <main className="pt-20 min-h-screen px-2 md:px-4">
+        <main className="min-h-screen">
             {children}
         </main>
     )
