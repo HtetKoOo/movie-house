@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Movie } from "@/types/movie";
+import Link from "next/link";
 
 interface SearchResultGridProps {
     title: string;
@@ -20,26 +21,32 @@ export function SearchResultGrid({ title, results, className }: SearchResultGrid
 
             <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-4">
                 {results.map((result) => (
-                    <div
+                    <Link
+                        href={`/movie/${result.id}`}
                         key={result.id}
                         className="rounded-2xl overflow-hidden shadow-lg hover:scale-[1.03] transition-transform"
                     >
                         <div className="relative w-full aspect-2/3">
                             <Image
-                                src={`https://image.tmdb.org/t/p/w500${result.poster_path}`}
-                                alt={result.name || "Movie poster"}
+                                src={
+                                    result.poster_path
+                                        ? `https://image.tmdb.org/t/p/w500${result.poster_path}`
+                                        : "/images/image-placeholder.png"
+                                }
+                                alt={result.title || "Movie poster"}
                                 fill
+                                sizes="(max-width: 640px) 50vw, (max-width: 768px) 25vw, (max-width: 1024px) 12.5vw, 10vw"
                                 className="object-cover"
                             />
                         </div>
 
                         <div className="p-3">
-                            <h3 className="font-semibold text-sm truncate">{result.name || result.title}</h3>
+                            <h3 className="font-semibold text-sm truncate">{result.title}</h3>
                             <p className="text-xs text-muted-foreground">
                                 ⭐ {result.vote_average.toFixed(1)}
                             </p>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>

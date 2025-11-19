@@ -1,8 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import { cn } from "@/lib/utils"; // optional, for className merging
 import { TvShow } from "@/types/tv-show";
+import Link from "next/link";
 
 interface TvShowGridProps {
     title: string;
@@ -17,13 +16,18 @@ export function TvShowGrid({ title, shows, className }: TvShowGridProps) {
 
             <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-4">
                 {shows.map((show) => (
-                    <div
+                    <Link
+                        href={`/tv/${show.id}`}
                         key={show.id}
                         className="rounded-2xl overflow-hidden shadow-lg hover:scale-[1.03] transition-transform"
                     >
                         <div className="relative w-full aspect-2/3">
                             <Image
-                                src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
+                                src={
+                                    show.poster_path
+                                        ? `https://image.tmdb.org/t/p/original${show.poster_path}`
+                                        : "/images/image-placeholder.png"
+                                }
                                 alt={show.name}
                                 fill
                                 className="object-cover"
@@ -36,7 +40,7 @@ export function TvShowGrid({ title, shows, className }: TvShowGridProps) {
                                 ⭐ {show.vote_average.toFixed(1)}
                             </p>
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </section>

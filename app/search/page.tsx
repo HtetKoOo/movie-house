@@ -13,9 +13,7 @@ export default async function SearchPage({
 
     if (!trimmedQuery) {
         return (
-            <main className="min-h-screen flex items-center justify-center text-gray-400">
-                <p>Type something to search for movies 🎬</p>
-            </main>
+            <p>Type something to search for movies 🎬</p>
         );
     }
 
