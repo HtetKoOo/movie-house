@@ -1,116 +1,80 @@
+import { getPeopleDetails } from "@/services/get-people-details";
+import { Globe } from "lucide-react";
 import Image from "next/image";
-import { notFound } from "next/navigation";
-
-interface PersonDetail {
-    adult: boolean;
-    also_known_as: string[];
-    biography: string;
-    birthday: string;
-    deathday: string | null;
-    gender: number;
-    homepage: string | null;
-    id: number;
-    imdb_id: string;
-    known_for_department: string;
-    name: string;
-    place_of_birth: string;
-    popularity: number;
-    profile_path: string;
-}
-
-async function getPerson(id: string): Promise<PersonDetail> {
-    const res = await fetch(
-        `${process.env.NEXT_PUBLIC_PEOPLE_DETAILS_API_URL}/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US`
-    );
-    if (!res.ok) return notFound();
-    return res.json();
-}
+import Link from "next/link";
+import { FaGithub, FaTelegram, FaTwitter } from "react-icons/fa";
 
 export default async function PersonPage({
     params,
 }: {
-    params: { id: string }
+    params: Promise<{ id: string }>;
 }) {
-    const person = await getPerson(params.id);
+    const { id } = await params;
+    const person = await getPeopleDetails(id);
 
     return (
-        <main className="max-w-6xl mx-auto px-6 py-16">
-            <div className="flex flex-col md:flex-row gap-10">
-                {/* Profile Image */}
-                <div className="">
-                    <Image
-                        src={`https://image.tmdb.org/t/p/w500${person.profile_path}`}
-                        alt={person.name}
-                        width={350}
-                        height={500}
-                        className="rounded-xl shadow-lg object-cover"
-                    />
-                </div>
-
-                {/* Info Section */}
-                <div className="space-y-4">
-                    <h1 className="text-4xl font-bold">{person.name}</h1>
-                    <p className="text-gray-400">{person.known_for_department}</p>
-
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-200">
-                        <p><span className="font-semibold">Gender:</span> {person.gender === 2 ? "Male" : "Female"}</p>
-                        <p><span className="font-semibold">Born:</span> {person.birthday}</p>
-                        {person.place_of_birth && (
-                            <p><span className="font-semibold">Place of Birth:</span> {person.place_of_birth}</p>
-                        )}
-                        {person.popularity && (
-                            <p><span className="font-semibold">Popularity:</span> {person.popularity.toFixed(1)}</p>
-                        )}
+        <main className="min-h-screen flex flex-col sm:flex-row items-center sm:items-start pt-14 sm:px-4 sm:pt-16 gap-2">
+            {/* LEFT */}
+            <div className="flex flex-col w-full sm:w-1/3 md:w-1/4 lg:w-1/5 p-4 bg-amber-100">
+                <Image
+                    src={
+                        person.profile_path
+                            ? `https://image.tmdb.org/t/p/w500${person.profile_path}`
+                            : "/images/image-placeholder.png"
+                    }
+                    alt={person.name}
+                    width={300}
+                    height={450}
+                    className="rounded-2xl w-1/3 mx-auto sm:w-full object-cover"
+                />
+                <div className="mt-2 flex flex-col items-center sm:items-start justify-center gap-1">
+                    <h3 className="font-semibold text-xl ">{person.name}</h3>
+                    <p className=" ">
+                        <strong>Known for - </strong>{person.known_for_department}
+                    </p>
+                    <div className="flex gap-2 md:gap-4">
+                        <a
+                            href="https://x.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Twitter"
+                            className="cursor-pointer"
+                        >
+                            <FaTwitter className="w-6 h-6 hover:text-[#1DA1F2]" />
+                        </a>
+                        <a
+                            href="https://t.me"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Telegram"
+                        >
+                            <FaTelegram className="w-6 h-6 hover:text-[#229ED9]" />
+                        </a>
+                        <a
+                            href="https://github.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Github"
+                        >
+                            <FaGithub className="w-6 h-6 hover:text-[#6e7681]" />
+                        </a>
+                        <Link href="/about">
+                            <Globe className="w-6 h-6 hover:text-green-400" />
+                        </Link>
                     </div>
-
-                    {/* Also Known As */}
-                    {person.also_known_as?.length > 0 && (
-                        <div>
-                            <h3 className="font-semibold text-lg mb-2">Also Known As</h3>
-                            <ul className="flex flex-wrap gap-2">
-                                {person.also_known_as.map((aka, index) => (
-                                    <li
-                                        key={index}
-                                        className="bg-gray-800 px-3 py-1 rounded-full text-sm"
-                                    >
-                                        {aka}
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
-
-                    {/* Biography */}
-                    <div>
-                        <h3 className="font-semibold text-lg mb-2">Biography</h3>
-                        <p className="text-gray-300 leading-relaxed whitespace-pre-line">
-                            {person.biography || "No biography available."}
-                        </p>
-                    </div>
-
-                    {/* External Links */}
-                    <div className="mt-6 flex gap-4">
-                        {person.imdb_id && (
-                            <a
-                                href={`https://www.imdb.com/name/${person.imdb_id}`}
-                                target="_blank"
-                                className="text-sm underline"
-                            >
-                                IMDb Profile
-                            </a>
-                        )}
-                        {person.homepage && (
-                            <a
-                                href={person.homepage}
-                                target="_blank"
-                                className="text-sm underline"
-                            >
-                                Official Website
-                            </a>
-                        )}
-                    </div>
+                    <p><strong>Gender - </strong>{person.gender === 1 ? "Female" : "Male"}</p>
+                    <p className=""><strong>Birthday - </strong>{person.birthday}</p>
+                    <p className=""><strong>Place of Birth - </strong>{person.place_of_birth}</p>
                 </div>
             </div>
-        </main>
+
+
+            {/* RIGHT */}
+            <div className="w-full sm:w-2/3 md:w-3/4 lg:w-4/5 sm:mt-4 p-4">
+                <h4 className="text-xl font-semibold mb-2">Biography</h4>
+                <p>{person.biography}</p>
+                
+            </div>
+        </main >
     );
 }
