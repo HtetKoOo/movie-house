@@ -1,22 +1,20 @@
-"use client";
 import MovieSlider from "@/components/movie-slider";
 import NowPlayingMovie from "@/components/now-playing-movie";
 import PopularMovie from "@/components/popular-movie";
 import PopularTVSeries from "@/components/popular-tv-series";
 import UpcomingMovie from "@/components/upcoming-movie";
-import { useNowPlayingMovie, usePopularMovie, usePopularTVSeries, useTopRatedMovie, useUpcomingMovie } from "@/hooks/useMovie";
+import { getTopRatedMovies } from "@/services/get-top-rated-movies";
+import { getPopularMovies } from "@/services/get-popular-movies";
+import { getNowPlayingMovies } from "@/services/get-now-playing-movies";
+import { getUpcomingMovies } from "@/services/get-upcoming-movies";
+import { getPopularTvShows } from "@/services/get-popular-tv";
 
-export default function Home() {
-  const { topRatedMovies, isLoading, isError } = useTopRatedMovie();
-  const { popularMovies, isLoading: popularLoading, isError: popularError } = usePopularMovie();
-  const { nowPlayingMovies, isLoading: nowPlayingLoading, isError: nowPlayingError } = useNowPlayingMovie();
-  const { upcomingMovies, isLoading: upcomingLoading, isError: upcomingError } = useUpcomingMovie();
-  const { popularTVSeries, isLoading: popularTVLoading, isError: popularTVError } = usePopularTVSeries();
-
-  console.log({ nowPlayingMovies });
-
-  if (isLoading || popularLoading || nowPlayingLoading || upcomingLoading || popularTVLoading) return <div>Loading...</div>;
-  if (isError || popularError || nowPlayingError || upcomingError || popularTVError) return <div>Error loading movies</div>;
+export default async function Home() {
+  const topRatedMovies = await getTopRatedMovies();
+  const popularMovies = await getPopularMovies();
+  const nowPlayingMovies = await getNowPlayingMovies();
+  const upcomingMovies = await getUpcomingMovies();
+  const popularTVSeries = await getPopularTvShows();
 
   return (
     <div className="flex w-full items-center justify-center">
@@ -30,3 +28,4 @@ export default function Home() {
     </div>
   );
 }
+

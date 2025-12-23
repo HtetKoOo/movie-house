@@ -1,6 +1,6 @@
 "use server"
 
-import { Movie } from "@/types/movie";
+import { TvShow } from "@/types/tv-show";
 
 export const getTvShowDetails = async (id: string) => {
   const response = await fetch(
@@ -13,5 +13,5 @@ export const getTvShowDetails = async (id: string) => {
 
   const data = await response.json();
   console.log("tv",data)
-  return data as Movie;
+  return data as TvShow;
 };

@@ -44,7 +44,7 @@ export default async function TvShowDetailPage({
                                         ? `https://image.tmdb.org/t/p/original${tvShow.poster_path}`
                                         : "/images/image-placeholder.png"
                                 }
-                                alt={tvShow.title}
+                                alt={tvShow.name}
                                 fill
                                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 700px"
                                 className="object-cover rounded-2xl shadow-lg"
@@ -54,7 +54,7 @@ export default async function TvShowDetailPage({
                         {/* CENTER */}
                         <div className="flex flex-col flex-1 sm:mx-6 justify-between">
                             <div>
-                                <h1 className="text-4xl font-bold mb-4">{tvShow.title}</h1>
+                                <h1 className="text-4xl font-bold mb-4">{tvShow.name}</h1>
                                 <div className="flex items-center mb-4 gap-2">
                                     {tvShow.genres?.map((genre) => (
                                         <Badge key={genre.id} className="bg-white/20 text-white">
@@ -72,10 +72,10 @@ export default async function TvShowDetailPage({
                                     <span>|</span>
                                     <p>{tvShow.original_language}</p>
                                     <span>|</span>
-                                    <p>{tvShow.runtime} min</p>
+                                    <p>{tvShow.number_of_episodes} eps</p>
                                 </div>
                                 <p className="mb-2">
-                                    <strong>Release Date:</strong> {tvShow.release_date}
+                                    <strong>First Air Date:</strong> {tvShow.first_air_date}
                                 </p>
                                 <div className="flex gap-3 lg:hidden mb-4">
                                     <Link href={tvShow.homepage}>
@@ -205,7 +205,7 @@ export default async function TvShowDetailPage({
                             {similarTvShows.results.map((similar) => (
                                 <Link
                                     key={similar.id}
-                                    href={`/movie/${similar.id}`}
+                                    href={`/tv/${similar.id}`}
                                     className="rounded-2xl overflow-hidden border border-gray-200 shadow-md hover:scale-102 transition-transform duration-200"
                                 >
                                     <div className="relative w-full aspect-3/4 overflow-hidden">
@@ -215,14 +215,14 @@ export default async function TvShowDetailPage({
                                                     ? `https://image.tmdb.org/t/p/w500${similar.poster_path}`
                                                     : "/images/image-placeholder.png"
                                             }
-                                            alt={similar.title}
+                                            alt={similar.name}
                                             fill
                                             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
                                             className="object-cover rounded-t-2xl"
                                         />
                                     </div>
                                     <div className="p-2 text-center">
-                                        <p className="text-sm font-medium line-clamp-2">{similar.title}</p>
+                                        <p className="text-sm font-medium line-clamp-2">{similar.name}</p>
                                         <p className="text-xs">⭐ {similar.vote_average.toFixed(1)}</p>
                                     </div>
                                 </Link>
