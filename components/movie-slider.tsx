@@ -44,10 +44,9 @@ export default function MovieSlider({ topRatedMovies }: { topRatedMovies: Movie[
                             <div className="absolute bottom-5 md:bottom-10 lg:bottom-20 left-5 lg:left-10 p-4 text-white w-2/3 md:w-1/2">
                                 <h3 className="text-xl md:text-2xl lg:text-3xl font-bold">{movie.title}</h3>
                                 <p className="hidden lg:block w-full">{movie.overview}</p>
-                                <Link href="/">
-                                <Button className="mt-2 cursor-pointer">
-                                    <CirclePlay className="mr-2" />
-                                    Watch Now
+                                <Link href={`/movie/${movie.id}`}>
+                                    <Button className="mt-2 cursor-pointer">
+                                        Movie Details
                                     </Button>
                                 </Link>
                             </div>
