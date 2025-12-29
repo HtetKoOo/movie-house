@@ -1,4 +1,4 @@
-
+import PersonCard from "@/components/person-card";
 import { getPeople } from "@/services/get-people";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,34 +13,8 @@ export default async function PeoplePage() {
                     <Link
                         key={person.id}
                         href={`/people/${person.id}`}
-                        className="border rounded-2xl shadow hover:shadow-lg transition"
                     >
-                        <div className="relative w-full aspect-3/4 rounded-2xl overflow-hidden bg-gray-100">
-                            <Image
-                                src={
-                                    person.profile_path
-                                        ? `https://image.tmdb.org/t/p/w500${person.profile_path}`
-                                        : "/images/image-placeholder.png"
-                                }
-                                alt={person.name}
-                                fill
-                                className="object-cover"
-                                sizes="(max-width: 768px) 100vw, 33vw"
-                            />
-                        </div>
-                        <div className="p-2">
-                            <h2 className="font-semibold text-lg">{person.name}</h2>
-                            <p className="text-sm">Popularity: {person.popularity.toFixed(1)}</p>
-                            <div className="mt-1">
-                                <ul className="text-sm text-gray-600 list-disc list-inside">
-                                    {person.known_for.map((work) => (
-                                        <li key={work.id}>
-                                            {work.title || work.name} ({work.media_type.toUpperCase()})
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
+                        <PersonCard person={person} />
                     </Link>
                 ))}
             </div>

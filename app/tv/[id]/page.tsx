@@ -78,11 +78,13 @@ export default async function TvShowDetailPage({
                                     <strong>First Air Date:</strong> {tvShow.first_air_date}
                                 </p>
                                 <div className="flex gap-3 lg:hidden mb-4">
-                                    <Link href={tvShow.homepage}>
-                                        <Button className="cursor-pointer bg-green-400">
-                                            Watch Now
-                                        </Button>
-                                    </Link>
+                                    {tvShow.homepage && (
+                                        <Link href={tvShow.homepage}>
+                                            <Button className="cursor-pointer bg-green-400">
+                                                Watch Now
+                                            </Button>
+                                        </Link>
+                                    )}
                                     <Link href="/">
                                         <Button className="cursor-pointer bg-blue-400">
                                             Add to List
@@ -97,11 +99,13 @@ export default async function TvShowDetailPage({
                             {/* BUTTONS BASELINE */}
                             <div>
                                 <div className="space-x-3 hidden lg:block mb-4">
-                                    <Link href={tvShow.homepage}>
-                                        <Button className="cursor-pointer bg-green-400">
-                                            Watch Now
-                                        </Button>
-                                    </Link>
+                                    {tvShow.homepage && (
+                                        <Link href={tvShow.homepage}>
+                                            <Button className="cursor-pointer bg-green-400">
+                                                Watch Now
+                                            </Button>
+                                        </Link>
+                                    )}
                                     <Link href="/">
                                         <Button className="cursor-pointer bg-blue-400">
                                             Add to List

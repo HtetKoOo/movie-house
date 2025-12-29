@@ -31,3 +31,22 @@ export interface PersonDetail {
   popularity: number;
   profile_path: string;
 }
+
+export interface PersonCast {
+  id: number;
+  title?: string;
+  name?: string;
+  poster_path: string | null;
+  backdrop_path: string | null;
+  character: string;
+  media_type: "movie" | "tv";
+  vote_average: number;
+  popularity: number;
+  release_date?: string;
+  first_air_date?: string;
+  credit_id: string;
+}
+
+export interface PersonCredits {
+  cast: PersonCast[];
+}

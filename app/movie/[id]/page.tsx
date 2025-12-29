@@ -78,11 +78,13 @@ export default async function MovieDetailPage({
                                     <strong>Release Date:</strong> {movie.release_date}
                                 </p>
                                 <div className="flex gap-3 lg:hidden mb-4">
-                                    <Link href={movie.homepage}>
-                                        <Button className="cursor-pointer bg-green-400">
-                                            Watch Now
-                                        </Button>
-                                    </Link>
+                                    {movie.homepage && (
+                                        <Link href={movie.homepage}>
+                                            <Button className="cursor-pointer bg-green-400">
+                                                Watch Now
+                                            </Button>
+                                        </Link>
+                                    )}
                                     <Link href="" >
                                         <Button className="cursor-pointer bg-blue-400">Play Trailer</Button>
                                     </Link>
@@ -98,11 +100,13 @@ export default async function MovieDetailPage({
                             {/* BUTTONS BASELINE */}
                             <div>
                                 <div className="space-x-3 hidden lg:block mb-4">
-                                    <Link href={movie.homepage}>
-                                        <Button className="cursor-pointer bg-green-400">
-                                            Watch Now
-                                        </Button>
-                                    </Link>
+                                    {movie.homepage && (
+                                        <Link href={movie.homepage}>
+                                            <Button className="cursor-pointer bg-green-400">
+                                                Watch Now
+                                            </Button>
+                                        </Link>
+                                    )}
                                     <Link href="" >
                                         <Button className="cursor-pointer bg-blue-400">Play Trailer</Button>
                                     </Link>
